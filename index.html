@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Java Coffee | QR Order</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Hero Section dengan Gambar Cafe & Branding -->
+    <div class="hero-section">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="logo-area">
+          <div class="logo-icon">
+            <i class="fas fa-mug-hot"></i>
+          </div>
+          <h1 class="hero-title">Java Coffee</h1>
+        </div>
+        <p class="hero-tagline">Artisan Coffee & Comfort Food</p>
+        <div class="table-badge-hero">
+          <i class="fas fa-qrcode"></i>
+          <span id="tableNumberDisplayHero">Meja --</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header untuk mobile (sticky) -->
+    <header class="main-header">
+      <div class="brand-compact">
+        <i class="fas fa-mug-hot"></i>
+        <span>Java Coffee</span>
+      </div>
+      <button class="cart-icon-btn" id="cartIconBtn">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count-badge" id="cartCountBadge">0</span>
+      </button>
+    </header>
+
+    <!-- Kategori Menu -->
+    <div class="category-tabs" id="categoryTabs">
+      <button class="category-btn active" data-cat="coffee">
+        <i class="fas fa-mug-saucer"></i> Coffee
+      </button>
+      <button class="category-btn" data-cat="non-coffee">
+        <i class="fas fa-leaf"></i> Non-Coffee
+      </button>
+      <button class="category-btn" data-cat="snack">
+        <i class="fas fa-utensils"></i> Snack
+      </button>
+    </div>
+
+    <!-- Grid Menu -->
+    <main class="menu-grid" id="menuGrid">
+      <!-- Menu items akan di inject via JS -->
+    </main>
+
+    <!-- Panel Keranjang -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-panel" id="cartPanel">
+      <div class="cart-header">
+        <h3><i class="fas fa-shopping-bag"></i> Your Order</h3>
+        <button class="close-cart" id="closeCartBtn"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="cart-items-list" id="cartItemsList">
+        <div class="empty-cart-msg">Keranjang kosong</div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total</span>
+          <span id="cartTotalPrice">Rp 0</span>
+        </div>
+        <button class="btn-primary checkout-btn" id="checkoutBtn">Pesan Sekarang</button>
+      </div>
+    </div>
+
+    <!-- Modal Form Pemesanan -->
+    <div class="modal" id="orderModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Detail Pemesan</h3>
+          <button class="modal-close" id="closeModalBtn">&times;</button>
+        </div>
+        <form id="orderForm">
+          <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="customerName" placeholder="Contoh: Andi Wijaya" required>
+          </div>
+          <div class="form-group">
+            <label>Nomor HP</label>
+            <input type="tel" id="customerPhone" placeholder="0812-3456-7890" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="customerEmail" placeholder="email@contoh.com" required>
+          </div>
+          <div class="form-group">
+            <label>Nomor Meja</label>
+            <input type="text" id="tableNumberInput" readonly disabled>
+          </div>
+          <div class="form-group">
+            <label>Metode Pembayaran</label>
+            <div class="payment-options">
+              <label class="payment-radio">
+                <input type="radio" name="paymentMethod" value="cash" checked> Bayar di Kasir
+              </label>
+              <label class="payment-radio">
+                <input type="radio" name="paymentMethod" value="noncash"> Non Tunai (QRIS)
+              </label>
+            </div>
+          </div>
+          <div class="qris-container" id="qrisContainer" style="display: none;">
+            <div class="qris-placeholder">
+              <img src="https://placehold.co/200x200/8B5A2B/FFFFFF?text=QRIS" alt="QRIS">
+              <p class="qris-caption">Scan QRIS untuk pembayaran</p>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary submit-order-btn">Kirim Pesanan</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast Notifikasi -->
+    <div class="toast-notification" id="toastMsg">
+      <i class="fas fa-check-circle"></i> Pesanan berhasil dikirim
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
